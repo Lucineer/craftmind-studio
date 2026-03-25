@@ -1,0 +1,21 @@
+{
+  "name": "craftmind-studio",
+  "version": "0.1.0",
+  "description": "AI-powered Minecraft filmmaking studio — virtual actors, cinematic direction, automated production",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "director": "node src/director.js",
+    "render": "node src/renderer.js",
+    "test": "node --test src/*.test.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.23.0",
+    "mineflayer-viewer": "^1.13.0",
+    "vec3": "^0.1.10",
+    "prismarine-viewer": "^1.29.0"
+  },
+  "keywords": ["minecraft", "machinima", "ai", "filmmaking", "voice-synthesis"],
+  "license": "MIT"
+}
