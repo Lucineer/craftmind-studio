@@ -31,6 +31,12 @@ import { CrisisSystem, CRISIS_TYPES } from './crisis-events.js';
 import { AudienceSystem } from './audience.js';
 import { CompetitorStudio, CompetitorLeague } from './competitor-studios.js';
 import { DailyRoutine, TIME_PHASES, PHASE_ORDER } from './daily-routine.js';
+import { STUDIO_ACTION_TYPES, validateStudioAction, validateStudioPlan } from './ai/studio-action-schema.js';
+import { STUDIO_NPC_CONFIGS, STUDIO_TRAITS, getNPCConfig, getNPCsByRole } from './ai/studio-agent-configs.js';
+import { StudioInteractionResolver } from './ai/studio-interactions.js';
+import { StudioStoryGenerator } from './ai/studio-story-generator.js';
+import { DirectingEvaluator } from './ai/directing-evaluator.js';
+import { ScriptEvolverStudio } from './ai/script-evolver-studio.js';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import { createServer } from 'node:http';
@@ -65,6 +71,13 @@ export {
   AudienceSystem,
   CompetitorStudio, CompetitorLeague,
   DailyRoutine, TIME_PHASES, PHASE_ORDER,
+  // AI modules
+  STUDIO_ACTION_TYPES, validateStudioAction, validateStudioPlan,
+  STUDIO_NPC_CONFIGS, STUDIO_TRAITS, getNPCConfig, getNPCsByRole,
+  StudioInteractionResolver,
+  StudioStoryGenerator,
+  DirectingEvaluator,
+  ScriptEvolverStudio,
 };
 
 // ── Web UI Server ──────────────────────────────────────────────────────
