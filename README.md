@@ -1,120 +1,55 @@
-# 🎬 CraftMind Studio
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Lucineer/capitaine/master/docs/capitaine-logo.jpg" alt="Capitaine" width="120">
+</p>
 
-> AI-powered filmmaking engine for Minecraft — become a virtual movie tycoon.
+<h1 align="center">craftmind-studio</h1>
 
-## Features
+<p align="center">AI filmmaking studio — agents as actors, parallel simulations.</p>
 
-- **Timeline Editor** — Create shot lists with duration, type, and camera metadata
-- **AI Director** — Generate scene breakdowns, dialogue, and shot compositions
-- **Character System** — Register cast members with traits, relationships, and trust dynamics
-- **Camera System** — Rule of thirds, DOF, 180° rule, composition scoring
-- **Production Pipeline** — End-to-end from brief → storyboard → rendered output
-- **Era System** — Genre-aware director blocks and era-specific set suggestions
-- **Plugin Integration** — `registerWithCore()` for CraftMind Core compatibility
+---
 
-## Quick Start
+**CraftMind ecosystem** · Part of the [Lucineer fleet](https://github.com/orgs/Lucineer/repositories)
 
-```bash
-npm install
-node examples/demo.js    # Run standalone demo
-node scripts/playtest.js # Simulated plugin test
-npm test                 # Run test suite (134 tests)
-```
+## The Fleet
 
-## API Documentation
 
-### Timeline (`src/timeline.js`)
-| Function | Description |
-|---|---|
-| `createTimeline(title)` | Create a new timeline |
-| `addShot(tl, shot)` | Append a shot {id, type, duration, description} |
-| `insertShot(tl, index, shot)` | Insert shot at position |
-| `getShotAt(tl, timeSec)` | Get shot playing at time |
+<details>
+<summary><strong>⚓ The Fleet</strong></summary>
 
-### Director (`src/director.js`)
-| Function | Description |
-|---|---|
-| `generateShotList(brief)` | AI-generated shot sequence |
-| `generateDialogue(scene, cast)` | Generate character dialogue |
-| `checkDirectorBlock(genre, era)` | Check if shooting is blocked |
-| `getEraSuggestions(era)` | Get era-appropriate set ideas |
+**Flagship vessels**
 
-### Character (`src/character.js`)
-| Function | Description |
-|---|---|
-| `registerCharacter(profile)` | Add cast member |
-| `getCharacter(id)` | Look up character |
-| `adjustTrust(from, to, delta)` | Modify trust relationship |
+- [cocapn.ai](https://github.com/Lucineer/capitaine)
+- [personallog.ai](https://github.com/Lucineer/personallog-ai)
+- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
+- [studylog.ai](https://github.com/Lucineer/studylog-ai)
+- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
+- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
+- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
+- [reallog.ai](https://github.com/Lucineer/reallog-ai)
+- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
 
-### Production (`src/index.js`)
-| Function | Description |
-|---|---|
-| `produce(opts)` | Run full pipeline {brief, cast, simConfig} |
-| `startServer(opts)` | Launch Minecraft-integrated server |
-| `registerWithCore(core)` | Register as CraftMind plugin |
+**Fleet services**
 
-## Plugin Integration
+- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
+- [Git Agent (full)](https://github.com/Lucineer/git-agent)
+- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
+- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
+- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
+- [Dream Engine](https://github.com/Lucineer/dream-engine)
+- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
 
-```js
-import { registerWithCore } from 'craftmind-studio';
+**For power users**
 
-// core needs registerPlugin(name, { name, version, modules, init, onChat })
-registerWithCore(core);
-// Registers as 'studio' plugin
-```
+- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
+- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
+- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
 
-## Architecture
+[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
+[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
 
-```
-┌──────────────────────────────────────────────────┐
-│                  CraftMind Studio                │
-├──────────────────────────────────────────────────┤
-│  ┌─────────┐  ┌──────────┐  ┌───────────────┐  │
-│  │Timeline │  │ Director │  │  Character    │  │
-│  │ Editor  │→ │ (AI Gen) │→ │  System       │  │
-│  └────┬────┘  └────┬─────┘  └───────┬───────┘  │
-│       │            │                │           │
-│       ▼            ▼                ▼           │
-│  ┌──────────────────────────────────────────┐   │
-│  │          Production Pipeline             │   │
-│  │  Brief → Shots → Storyboard → Render     │   │
-│  └──────────────────┬───────────────────────┘   │
-│                     │                           │
-│  ┌──────────┐  ┌────▼─────┐  ┌───────────┐    │
-│  │ Camera   │  │Renderer  │  │ Compositor│    │
-│  │ System   │  │          │  │           │    │
-│  └──────────┘  └──────────┘  └───────────┘    │
-├──────────────────────────────────────────────────┤
-│              registerWithCore(core)              │
-└──────────────────────────────────────────────────┘
-```
+</details>
 
-## Testing
-
-```bash
-npm test          # 134 tests, 36 suites
-node examples/demo.js
-node scripts/playtest.js
-```
-
-## Roadmap
-
-See [ROADMAP.md](./ROADMAP.md) for detailed plans.
-
-## CraftMind Ecosystem
-
-| Repo | Description |
-|------|-------------|
-| [craftmind](https://github.com/CedarBeach2019/craftmind) | 🤖 Core bot framework |
-| [craftmind-fishing](https://github.com/CedarBeach2019/craftmind-fishing) | 🎣 Sitka Sound fishing RPG |
-| [**craftmind-studio**](https://github.com/CedarBeach2019/craftmind-studio) | 🎬 AI filmmaking engine |
-| [craftmind-courses](https://github.com/CedarBeach2019/craftmind-courses) | 📚 In-game learning system |
-| [craftmind-researcher](https://github.com/CedarBeach2019/craftmind-researcher) | 🔬 AI research assistant |
-| [craftmind-herding](https://github.com/CedarBeach2019/craftmind-herding) | 🐑 Livestock herding AI |
-| [craftmind-circuits](https://github.com/CedarBeach2019/craftmind-circuits) | ⚡ Redstone circuit design |
-| [craftmind-ranch](https://github.com/CedarBeach2019/craftmind-ranch) | 🌾 Genetic animal breeding |
-| [craftmind-discgolf](https://github.com/CedarBeach2019/craftmind-discgolf) | 🥏 Disc golf simulation |
 
 ## License
 
-MIT
+MIT · Superinstance & Lucineer (DiGennaro et al.)
