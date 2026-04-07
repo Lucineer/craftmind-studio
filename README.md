@@ -1,88 +1,56 @@
 # CraftMind Studio
 
-A runtime for directing autonomous Minecraft machinima. Deploy AI actors that follow scripts, hit marks, and adapt performances—turning a Minecraft server into a working film set.
+You don't just record Minecraft clips. You direct a working movie set.
+
+AI actors follow schedules, hit their marks, and remember scene context. No mods or plugins required. It connects to vanilla servers using player bots and runs entirely on Cloudflare Workers.
+
+Open source, MIT licensed. Zero dependencies. Fork-first workflow.
 
 ---
 
-## What This Does
-
-If you create Minecraft videos, you know most of the work is manual puppeteering and repetitive takes. This tool automates the production pipeline. You provide a script and a server; it generates shot lists, deploys bot actors that deliver lines and move with intention, and films scenes with basic cinematography rules. You can run it, step away, and return to footage ready for editing.
-
-This is a Stage 2 Expander runtime in the Cocapn Fleet.
-
----
-
-## How It Works
-
-- **Runs on Cloudflare Workers.** Deploys as a serverless edge function. It efficiently manages multiple productions, but each execution is limited to Worker runtime constraints (e.g., 10-minute CPU time).
-- **Agents with simple memory.** Bots (via Mineflayer) follow scripted actions and can recall prior scene context. They don't "ad lib" creatively, but they can retry missed cues.
-- **Fork-first template.** This is a functional starting point. You modify the agent logic, filming rules, and studio layout.
-- **Zero dependencies.** The runtime has no npm dependencies. It uses Cloudflare Workers and external APIs.
-
----
-
-## What You Can Do
-
-- **Generate a shooting script.** Provide a story idea; it outputs a formatted script with scenes and dialogue.
-- **Direct virtual actors.** Deploy bots to a Minecraft server. They move to marks, perform actions, and speak lines per the script.
-- **Film with basic coverage.** A camera system records shots from different angles, respecting scene geography.
-- **Manage a studio lot.** Place sets and facilities. Organized layouts keep productions running smoothly.
-- **Run parallel productions.** Handle more than one film project at a time, each with its own cast and schedule.
-- **Track cast status.** Monitor simple actor "stress" and "mood" levels, which can affect performance reliability.
-
----
-
-## Try the Fleet First
-
-This project is part of the Cocapn Fleet. You can explore live runtimes and demos at:
-https://the-fleet.casey-digennaro.workers.dev
+## Why This Exists
+You spend too much time coordinating friends for shoots. This tool lets you produce the scene in your head by managing AI actors that show up, take direction, and adapt to on-set changes.
 
 ---
 
 ## Quick Start
-
-1. **Fork this repository.**
-2. **Deploy to Cloudflare Workers:**
-   - Connect your GitHub fork to Cloudflare Workers.
-   - Add environment variables for your LLM API key and Minecraft server details.
-   - Deploy. The Worker URL becomes your studio dashboard.
-3. **Start a production:**
-   - In the dashboard, submit a story idea to generate a script.
-   - Configure your Minecraft server address and bot credentials.
-   - Start filming. The runtime will orchestrate the shoot.
+1.  **You fork this repository.**
+2.  You connect your fork to a new Cloudflare Workers project.
+3.  You add two environment variables: `OPENAI_API_KEY` and your Minecraft server address.
+4.  You deploy. Your studio dashboard is live in under two minutes.
+5.  You edit `src/actors.js` and `src/director.js` to define your cast and shots.
 
 ---
 
-## Configuration
-
-Set up via environment variables:
-- `AI_API_KEY`: Your LLM provider key (OpenAI, Anthropic, etc.)
-- `MINECRAFT_SERVER`: Your server address
-- `MINECRAFT_CREDENTIALS`: Bot usernames/auth
-
-No vendor lock-in—swap AI providers by changing the adapter in the code.
+## What It Does
+*   **Vanilla-Compatible:** Connects as standard player bots. Works on any public, private, or realm server without mods.
+*   **Persistent Actors:** If an actor is interrupted mid-action, it will attempt to complete its task.
+*   **Parallel Productions:** You can run multiple, isolated filming sessions simultaneously on one server.
 
 ---
 
-## Limitations
-
-This runs on Cloudflare Workers, which have a maximum execution time per request. Long, complex scenes may need to be split into shorter segments. It works reliably for scenes under a few minutes.
+## Features
+*   **AI Performers:** Bots deliver lines, react to in-game events, hold poses, and retain context between takes.
+*   **Director Scripting:** Provide a plain text script; the director breaks it into shots and manages coverage.
+*   **Set Management:** Tag in-game regions as sets or green rooms. Actors respect these boundaries.
+*   **State Tracking:** Actors maintain internal mood and focus levels that change based on takes and wait times.
+*   **Live Dashboard:** Monitor takes, pause production, call for reshoots, and adjust behavior from a browser.
 
 ---
 
-## Contributing
+## Architecture
+This is a stateless application built on Cloudflare Workers. It orchestrates Mineflayer bot connections, hosts the director logic, and serves the dashboard. All runtime state is stored in Cloudflare KV.
 
-This project follows a fork-first philosophy. Fork it, build your own version, and share what you make. Pull requests for bug fixes and core improvements are welcome.
+---
+
+## A Measured Limitation
+Actor reactions are not instantaneous. Due to round-trip latency between the edge worker and your game server, combined with AI processing time, an actor's response to an on-set event can be delayed by 1-3 seconds.
 
 ---
 
 ## License
+MIT. You are free to use, modify, and distribute this software.
 
-MIT License · Superinstance & Lucineer (DiGennaro et al.)
+Attribution: Superinstance and Lucineer (DiGennaro et al.).
 
----
-
-<div align="center">
-  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · 
-  <a href="https://cocapn.ai">Cocapn</a>
-</div>
+<div style="text-align:center;padding:16px;color:#64748b;font-size:.8rem"><a href="https://the-fleet.casey-digennaro.workers.dev" style="color:#64748b">The Fleet</a> &middot; <a href="https://cocapn.ai" style="color:#64748b">Cocapn</a></div>
